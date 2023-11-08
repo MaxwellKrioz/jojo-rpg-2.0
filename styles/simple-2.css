@@ -1,0 +1,89 @@
+.window-app{
+  max-width: 745px;
+}
+
+
+.sheet-jojo .tabs {
+  display: flex;
+  justify-content: flex-start;
+}
+.sheet-jojo .tabs .item {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  margin-right: 8;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+  border-color: #898989;
+  background-color: rgb(0 0 0 / 15%);
+}
+.sheet-jojo .tabs .item.active {
+  color: white;
+  background-color: rgb(0 0 0 / 30%);
+  text-shadow: none;
+}
+
+.sheet-jojo .image-tabs{
+  border: 1px solid #898989;
+}
+
+
+
+.sheet-jojo{
+  margin: -8px;
+}
+
+.sheet-jojo .jojo-data-input-group {
+  display: flex;
+  align-items: center;
+}
+
+.jojo-data-input-group label{
+  margin-right: 8px;
+}
+
+.jojo-data-input-group input, .jojo-data-input-group select{
+  width: auto;
+}
+
+.sheet-jojo .sheet-jojo-header{
+  background-image: linear-gradient(to right,#b32fab, yellow);
+  border-bottom: 3px solid white;
+}
+
+.sheet-jojo-header .jojo-header-container{
+  padding: 10px 8px;
+  color: white;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.sheet-jojo .sheet-jojo-body{
+  display: flex;
+}
+
+.sheet-jojo-body .sheet-jojo-art-container{
+  min-width: 180px;
+  width: 45%;
+  padding: 10px;
+}
+.sheet-jojo-body .sheet-jojo-data-container{
+  flex-grow: 1;
+  max-width: 55%;
+  width: auto;
+  padding: 10px;
+  border-left: 1px solid #898989;
+}
+
+.sheet-jojo-data-container .row{
+  max-width: 100%;
+  margin-bottom: 8px;
+}
+
+.sheet-jojo-art-container .jojo-img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}

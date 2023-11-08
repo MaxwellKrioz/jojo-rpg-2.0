@@ -8,23 +8,23 @@
             
             <div class="GridContainer">
                 <div class="GridChild">
-                    <label for="data.stamina.value" class="resource-label" style="font-weight: bold;">Stamina</label>
+                    <label for="system.stamina.value" class="resource-label" style="font-weight: bold;">Stamina</label>
                     <div class="sideBySide">
-                        <input type="text" name="data.stamina.value" value="{{data.stamina.value}}" data-dtype="Number" style="width: 36px;"/>
+                        <input type="text" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number" style="width: 36px;"/>
                         <span> / </span>
-                        <input type="text" name="data.stamina.max" value="{{data.stamina.max}}" data-dtype="Number" style="width: 36px;"/>
+                        <input type="text" name="system.stamina.max" value="{{system.stamina.max}}" data-dtype="Number" style="width: 36px;"/>
                     </div>  
                 </div>
                 <div class="GridChild">
-                    <label for="data.momentum.value" class="resource-label" style="font-weight: bold;">Momentum</label>
+                    <label for="system.momentum.value" class="resource-label" style="font-weight: bold;">Momentum</label>
                     <div class="sidebyside">
                             <button class="momentumbutton {{actor._id}}-momdec" id="momentum-button-dec"><span>-</span></button>
-                            <input readonly type="string" class="incrementbox" id="{{actor._id}}-increment-box" name="data.momentum.value" value="{{data.momentum.value}}" min="-3" max="3" data-dtype="Number"/>
+                            <input readonly type="string" class="incrementbox" id="{{actor._id}}-increment-box" name="system.momentum.value" value="{{system.momentum.value}}" min="-3" max="3" data-dtype="Number"/>
                             <button class="momentumbutton {{actor._id}}-mominc" id="momentum-button-inc"><span>+</span></button>
                     </div>
                 </div>
                 <div class="GridChild">
-                    <label for="data.canAct" class="resource-label" style="font-weight: bold;">Initiative</label>
+                    <label for="system.canAct" class="resource-label" style="font-weight: bold;">Initiative</label>
                     <div class="sidebyside">
                         <button class="initiative-button"><span>USE</span></button>
                 </div>
@@ -60,12 +60,12 @@
 
                     <div class="Entry">
                         <h2>Appearance</h2>
-                        <textarea class="textarea-large" rows="7" name="data.appearance">{{data.appearance}}</textarea>
+                        <textarea class="textarea-large" rows="7" name="system.appearance">{{system.appearance}}</textarea>
                     </div>
 
                     <div class="Entry">
                         <h2>Biography</h2>
-                        <textarea class="textarea-large" rows="9" name="data.biography">{{data.biography}}</textarea>
+                        <textarea class="textarea-large" rows="9" name="system.biography">{{system.biography}}</textarea>
                     </div>
                 </div>
                 <div class="Column">
@@ -77,11 +77,11 @@
                             </div>
                             <div class="SideBySide">
                                 <span>Name: </span>
-                                <input type="text" name="data.goal1Name" value="{{data.goal1Name}}" data-dtype="String"/>
+                                <input type="text" name="system.goal1Name" value="{{system.goal1Name}}" data-dtype="String"/>
                             </div>
                             <div class="SideBySide">
                                 <span>Desc.: </span>
-                                <textarea class="textarea-large" style="resize: none;" rows="2" name="data.goal1Desc">{{data.goal1Desc}}</textarea>
+                                <textarea class="textarea-large" style="resize: none;" rows="2" name="system.goal1Desc">{{system.goal1Desc}}</textarea>
                             </div>
                         </div>
 
@@ -91,11 +91,11 @@
                             </div>
                             <div class="SideBySide">
                                 <span>Name: </span>
-                                <input type="text" name="data.goal2Name" value="{{data.goal2Name}}" data-dtype="String"/>
+                                <input type="text" name="system.goal2Name" value="{{system.goal2Name}}" data-dtype="String"/>
                             </div>
                             <div class="SideBySide">
                                 <span>Desc.: </span>
-                                <textarea class="textarea-large" style="resize: none;" rows="2" name="data.goal2Desc">{{data.goal2Desc}}</textarea>
+                                <textarea class="textarea-large" style="resize: none;" rows="2" name="system.goal2Desc">{{system.goal2Desc}}</textarea>
                             </div>
                         </div>
 
@@ -105,11 +105,11 @@
                             </div>
                             <div class="SideBySide">
                                 <span>Name: </span>
-                                <input type="text" name="data.impulse1Name" value="{{data.impulse1Name}}" data-dtype="String"/>
+                                <input type="text" name="system.impulse1Name" value="{{system.impulse1Name}}" data-dtype="String"/>
                             </div>
                             <div class="SideBySide">
                                 <span>Desc.: </span>
-                                <textarea class="textarea-large" style="resize: none;" rows="2" name="data.impulse1Desc">{{data.impulse1Desc}}</textarea>
+                                <textarea class="textarea-large" style="resize: none;" rows="2" name="system.impulse1Desc">{{system.impulse1Desc}}</textarea>
                             </div>
                         </div>
 
@@ -119,11 +119,11 @@
                             </div>
                             <div class="SideBySide">
                                 <span>Name: </span>
-                                <input type="text" name="data.impulse2Name" value="{{data.impulse2Name}}" data-dtype="String"/>
+                                <input type="text" name="system.impulse2Name" value="{{system.impulse2Name}}" data-dtype="String"/>
                             </div>
                             <div class="SideBySide">
                                 <span>Desc.: </span>
-                                <textarea class="textarea-large" style="resize: none;" rows="2" name="data.impulse2Desc">{{data.impulse2Desc}}</textarea>
+                                <textarea class="textarea-large" style="resize: none;" rows="2" name="system.impulse2Desc">{{system.impulse2Desc}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -142,11 +142,11 @@
                                     <div class="GridEntry">
                                         <div class="SideBySide">
                                             <span>Name: </span>
-                                            <input type="text" name="data.condition1Name" value="{{data.condition1Name}}" data-dtype="String"/>
+                                            <input type="text" name="system.condition1Name" value="{{system.condition1Name}}" data-dtype="String"/>
                                         </div>
                                         <div class="SideBySide">
                                             <span>Desc.: </span>
-                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="data.condition1Desc">{{data.condition1Desc}}</textarea>
+                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="system.condition1Desc">{{system.condition1Desc}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -155,11 +155,11 @@
                                     <div class="GridEntry">
                                         <div class="SideBySide">
                                             <span>Name: </span>
-                                            <input type="text" name="data.condition2Name" value="{{data.condition2Name}}" data-dtype="String"/>
+                                            <input type="text" name="system.condition2Name" value="{{system.condition2Name}}" data-dtype="String"/>
                                         </div>
                                         <div class="SideBySide">
                                             <span>Desc.: </span>
-                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="data.condition2Desc">{{data.condition2Desc}}</textarea>
+                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="system.condition2Desc">{{system.condition2Desc}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -170,11 +170,11 @@
                                     <div class="GridEntry">
                                         <div class="SideBySide">
                                             <span>Name: </span>
-                                            <input type="text" name="data.condition3Name" value="{{data.condition3Name}}" data-dtype="String"/>
+                                            <input type="text" name="system.condition3Name" value="{{system.condition3Name}}" data-dtype="String"/>
                                         </div>
                                         <div class="SideBySide">
                                             <span>Desc.: </span>
-                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="data.condition3Desc">{{data.condition3Desc}}</textarea>
+                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="system.condition3Desc">{{system.condition3Desc}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -183,11 +183,11 @@
                                     <div class="GridEntry">
                                         <div class="SideBySide">
                                             <span>Name: </span>
-                                            <input type="text" name="data.condition4Name" value="{{data.condition4Name}}" data-dtype="String"/>
+                                            <input type="text" name="system.condition4Name" value="{{system.condition4Name}}" data-dtype="String"/>
                                         </div>
                                         <div class="SideBySide">
                                             <span>Desc.: </span>
-                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="data.condition4Desc">{{data.condition4Desc}}</textarea>
+                                            <textarea class="textarea-large" style="resize: none;" rows="1" name="system.condition4Desc">{{system.condition4Desc}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -198,11 +198,11 @@
                                     <div class="GridEntry">
                                         <div class="SideBySide">
                                             <span>Name: </span>
-                                            <input type="text" name="data.condition5Name" value="{{data.condition5Name}}" data-dtype="String"/>
+                                            <input type="text" name="system.condition5Name" value="{{system.condition5Name}}" data-dtype="String"/>
                                         </div>
                                         <div class="SideBySide">
                                             <span>Desc.: </span>
-                                            <textarea class="textarea-large" style="resize: none;" rows="2" name="data.condition5Desc">{{data.condition5Desc}}</textarea>
+                                            <textarea class="textarea-large" style="resize: none;" rows="2" name="system.condition5Desc">{{system.condition5Desc}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -211,11 +211,11 @@
                                     <div class="GridEntry">
                                         <div class="SideBySide">
                                             <span>Name: </span>
-                                            <input type="text" name="data.condition6Name" value="{{data.condition6Name}}" data-dtype="String"/>
+                                            <input type="text" name="system.condition6Name" value="{{system.condition6Name}}" data-dtype="String"/>
                                         </div>
                                         <div class="SideBySide">
                                             <span>Desc.: </span>
-                                            <textarea class="textarea-large" style="resize: none;" rows="2" name="data.condition6Desc">{{data.condition6Desc}}</textarea>
+                                            <textarea class="textarea-large" style="resize: none;" rows="2" name="system.condition6Desc">{{system.condition6Desc}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -229,17 +229,17 @@
                             <div class="LightWoundsContainer" style="padding-bottom: 5px; padding-top: 5px;">
                                 <label># of Light Injuries: </label>
                                 <button class="{{actor._id}}-LightWounds-Dec" id="lightwounds-button"><span>-</span></button>
-                                <input readonly type="number" class="{{actor._id}}-woundsbox woundsbox" id="{{actor._id}}-currentlightwounds" name="data.wounds-light.value" value="{{data.wounds-light.value}}" data-dtype="Number"/>
+                                <input readonly type="number" class="{{actor._id}}-woundsbox woundsbox" id="{{actor._id}}-currentlightwounds" name="system.wounds-light.value" value="{{system.wounds-light.value}}" data-dtype="Number"/>
                                 <button class="{{actor._id}}-LightWounds-Inc" id="lightwounds-button"><span>+</span></button>
                             </div>
                             <div class="Row2">
                                 <div class="Column2">
                                     <p>H/M (Location)</p>
-                                    <textarea class="textarea-large" rows="4" name="data.injuries1">{{data.injuries1}}</textarea>
+                                    <textarea class="textarea-large" rows="4" name="system.injuries1">{{system.injuries1}}</textarea>
                                 </div>
                                 <div class="Column2">
                                     <p>H/M (Location)</p>
-                                    <textarea class="textarea-large" rows="4" name="data.injuries2">{{data.injuries2}}</textarea>
+                                    <textarea class="textarea-large" rows="4" name="system.injuries2">{{system.injuries2}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -254,8 +254,8 @@
                 <div class="ColumnRight3" style="float: left;">
                     <div class="Entry">
                         <h2>Appearance</h2>
-                        <label for="data.standname" class="standname-label" style="vertical-align: middle; display: inline-block;">Stand Name:</label>
-                        <input type="text" style="text-align:left; width:170px;" name="data.standname" value="{{data.standname}}" data-dtype="String"/>
+                        <label for="system.stand.standname" class="standname-label" style="vertical-align: middle; display: inline-block;">Stand Name:</label>
+                        <input type="text" style="text-align:left; width:170px;" name="system.stand.standname" value="{{system.stand.standname}}" data-dtype="String"/>
                     </div>
                     <div class="Entry"style="text-align: center;">
                         <div class="StandImgDisplay">
@@ -263,13 +263,13 @@
                         </div>
                 
                         <div class="UrlSrcSetter">
-                            <input id="UrlInput" name="data.standImageURL", value="{{data.standImageURL}}" placeholder="URL to Stand Portrait">
+                            <input id="UrlInput" name="system.standImageURL", value="{{system.standImageURL}}" placeholder="URL to Stand Portrait">
                             <button class="{{actor._id}}-grab-url">Set</button>
                         </div>
                     </div>
                     <div class="Entry">
                         <h2>Description</h2>
-                        <textarea class="textarea-large" rows="10" name="data.appearancestand">{{data.appearancestand}}</textarea>
+                        <textarea class="textarea-large" rows="10" name="system.appearancestand">{{system.appearancestand}}</textarea>
                     </div>
                 </div>
                 <div class="ColumnRight3" style="float: left;">
@@ -277,10 +277,10 @@
                         <h2>Stats</h2>
                         <div class="grid-container" id="DropShadowDeco" style="border: 1px solid #726857;">
                             <div class="grid-item-skills">
-                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.power.value}}" data-label="Power"><a>Power</a></span>
+                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.power.value}}" data-label="Power"><a>Power</a></span>
                                 <div class="resource-content" flexrow flex-center flex-between>
-                                    <select name="data.power.value" data-dtype="String">
-                                        {{#select data.power.value}}
+                                    <select name="system.stand.power.value" data-dtype="String">
+                                        {{#select system.stand.power.value}}
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                         <option value="C">C</option>
@@ -292,10 +292,10 @@
                             </div>
         
                             <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.speed.value}}" data-label="Speed"><a>Speed</a></span>
+                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.speed.value}}" data-label="Speed"><a>Speed</a></span>
                                 <div class="resource-content" flexrow flex-center flex-between>
-                                    <select name="data.speed.value" data-dtype="String">
-                                        {{#select data.speed.value}}
+                                    <select name="system.stand.speed.value" data-dtype="String">
+                                        {{#select system.stand.speed.value}}
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                         <option value="C">C</option>
@@ -307,10 +307,10 @@
                             </div>
         
                             <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.durability.value}}" data-label="Durability"><a>Durability</a></span>
+                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.durability.value}}" data-label="Durability"><a>Durability</a></span>
                                 <div class="resource-content" flexrow flex-center flex-between>
-                                    <select name="data.durability.value" data-dtype="String">
-                                        {{#select data.durability.value}}
+                                    <select name="system.stand.durability.value" data-dtype="String">
+                                        {{#select system.durability.value}}
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                         <option value="C">C</option>
@@ -322,10 +322,10 @@
                             </div>
         
                             <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.precision.value}}" data-label="Precision"><a>Precision</a></span>
+                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.precision.value}}" data-label="Precision"><a>Precision</a></span>
                                 <div class="resource-content" flexrow flex-center flex-between>
-                                    <select name="data.precision.value" data-dtype="String">
-                                        {{#select data.precision.value}}
+                                    <select name="system.stand.precision.value" data-dtype="String">
+                                        {{#select system.stand.precision.value}}
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                         <option value="C">C</option>
@@ -337,10 +337,10 @@
                             </div>
         
                             <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.range.value}}" data-label="Range"><a>Range</a></span>
+                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.range.value}}" data-label="Range"><a>Range</a></span>
                                 <div class="resource-content" flexrow flex-center flex-between>
-                                    <select name="data.range.value" data-dtype="String">
-                                        {{#select data.range.value}}
+                                    <select name="system.stand.range.value" data-dtype="String">
+                                        {{#select system.range.value}}
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                         <option value="C">C</option>
@@ -352,10 +352,10 @@
                             </div>
         
                             <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.potential.value}}" data-label="Potential"><a>Potential</a></span>
+                                <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.potential.value}}" data-label="Potential"><a>Potential</a></span>
                                 <div class="resource-content" flexrow flex-center flex-between>
-                                    <select name="data.potential.value" data-dtype="String">
-                                        {{#select data.potential.value}}
+                                    <select name="system.stand.potential.value" data-dtype="String">
+                                        {{#select system.potential.value}}
                                         <option value="A">A</option>
                                         <option value="B">B</option>
                                         <option value="C">C</option>
@@ -369,7 +369,7 @@
                     </div>
                     <div class="Entry">
                         <h2>Abilities</h2>
-                        <textarea class="textarea-large" rows="13" name="data.abilitiesstand">{{data.abilitiesstand}}</textarea>
+                        <textarea class="textarea-large" rows="13" name="system.abilitiesstand">{{system.abilitiesstand}}</textarea>
                     </div>
                 </div>
                 <div class="ColumnRight3" style="float: left;">
@@ -377,14 +377,14 @@
                         <h2>Modify Roll</h2>
                         <div class="roll-modifier-div" id="DropShadowDeco">
                             <button class="{{actor._id}}-modifier-button-inc" id="modify-button">+</button>
-                            <input readonly type="string" class="modifier-box" id="{{actor._id}}-modifier-box" name="data.rollmodifier.value" value="{{data.rollmodifier.value}}" data-dtype="Number"/>
+                            <input readonly type="string" class="modifier-box" id="{{actor._id}}-modifier-box" name="system.rollmodifier.value" value="{{system.rollmodifier.value}}" data-dtype="Number"/>
                             <button class="{{actor._id}}-modifier-button-dec" id="modify-button">-</button>
                             <button class="{{actor._id}}-modifier-button-rst">Reset</button>
                         </div> 
                     </div>
                     <div class="Entry">
                         <h2>Techniques</h2>
-                        <textarea class="textarea-large" rows="13" name="data.techniquesstand">{{data.techniquesstand}}</textarea>
+                        <textarea class="textarea-large" rows="13" name="system.techniquesstand">{{system.techniquesstand}}</textarea>
                     </div>
                 </div>
             </div>
@@ -396,19 +396,19 @@
                 <div class="Column2">
                     <div class="Entry">
                         <h2>Notes</h2>
-                        <textarea class="textarea-large" rows="27" name="data.playerNotes">{{data.playerNotes}}</textarea>
+                        <textarea class="textarea-large" rows="27" name="system.playerNotes">{{system.playerNotes}}</textarea>
                     </div>
                     
                 </div>
                 <div class="Column2">
                     <div class="Entry">
                         <h2>Allies and Enemies</h2>
-                        <textarea class="textarea-large" rows="6" name="data.alliesAndEnemies">{{data.alliesAndEnemies}}</textarea>
+                        <textarea class="textarea-large" rows="6" name="system.alliesAndEnemies">{{system.alliesAndEnemies}}</textarea>
                     </div>
 
                     <div class="Entry">
                         <h2>Equipment</h2>
-                        <textarea class="textarea-large" rows="17" name="data.playerEquipment">{{data.playerEquipment}}</textarea>
+                        <textarea class="textarea-large" rows="17" name="system.playerEquipment">{{system.playerEquipment}}</textarea>
                     </div>
                 </div>
             </div>

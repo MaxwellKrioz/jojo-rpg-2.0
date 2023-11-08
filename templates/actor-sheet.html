@@ -10,48 +10,48 @@
                     <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
                 </div>
                 <div class="grid-item3">
-                    <label for="data.age.value" class="resource-label">Age</label>
-                    <input type="text" name="data.age.value" value="{{data.age.value}}" data-dtype="Number"/>
+                    <label for="system.age.value" class="resource-label">Age</label>
+                    <input type="text" name="system.age.value" value="{{system.age.value}}" data-dtype="Number"/>
                 </div>
                 <div class="grid-item3">
-                    <label for="data.sex.value" class="resource-label">Sex</label>
-                    <input type="text" name="data.sex.value" value="{{data.sex.value}}" data-dtype="String"/>
+                    <label for="system.sex.value" class="resource-label">Sex</label>
+                    <input type="text" name="system.sex.value" value="{{system.sex.value}}" data-dtype="String"/>
                 </div>
                 <div class="grid-item3">
-                    <label for="data.stamina.value" class="resource-label">Stamina</label>
+                    <label for="system.stamina.value" class="resource-label">Stamina</label>
                     <div class="headerresource">
-                        <input type="text" name="data.stamina.value" value="{{data.stamina.value}}" data-dtype="Number"/>
+                        <input type="text" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number"/>
                         <span> / </span>
-                        <input type="text" name="data.stamina.max" value="{{data.stamina.max}}" data-dtype="Number"/>
+                        <input type="text" name="system.stamina.max" value="{{system.stamina.max}}" data-dtype="Number"/>
                     </div>  
                 </div>
                 <div class="grid-item3">
-                    <label for="data.wounds-light.value" class="resource-label">Injuries</label>
+                    <label for="system.wounds-light.value" class="resource-label">Injuries</label>
                     <div class="headerresource">
                         <label>L:</label>
-                        <input type="number" class="woundsbox" name="data.wounds-light.value" value="{{data.wounds-light.value}}"  step="1" min="0" max="4" data-dtype="Number"/>
+                        <input type="number" class="woundsbox" name="system.wounds-light.value" value="{{system.wounds-light.value}}"  step="1" min="0" max="4" data-dtype="Number"/>
                         <label>H:</label>
-                        <input type="number" class="woundsbox" name="data.wounds-heavy.value" value="{{data.wounds-heavy.value}}" min="0" data-dtype="Number"/>
+                        <input type="number" class="woundsbox" name="system.wounds-heavy.value" value="{{system.wounds-heavy.value}}" min="0" data-dtype="Number"/>
                         <label>M:</label>
-                        <input type="number" class="woundsbox" name="data.wounds-major.value" value="{{data.wounds-major.value}}" min="0" data-dtype="Number"/>
+                        <input type="number" class="woundsbox" name="system.wounds-major.value" value="{{system.wounds-major.value}}" min="0" data-dtype="Number"/>
                     </div>
                 </div>
                 <div class="grid-item3">
                     <div class="grid-container2" style="background-color: rgba(255, 255, 255, 0);">
                         <div class="sidebyside">
-                            <label for="data.momentum.value" class="resource-label">Momentum</label>
+                            <label for="system.momentum.value" class="resource-label">Momentum</label>
                             <div class="momentumcontainer">
                                 <button class="momentumbutton momdec" id="momentum-button-dec"><span>-</span></button>
-                                <input readonly type="string" class="incrementbox" id="increment-box" name="data.momentum.value" value="{{data.momentum.value}}" min="-3" max="3" data-dtype="Number"/>
+                                <input readonly type="string" class="incrementbox" id="increment-box" name="system.momentum.value" value="{{system.momentum.value}}" min="-3" max="3" data-dtype="Number"/>
                                 <button class="momentumbutton mominc" id="momentum-button-inc"><span>+</span></button>
                             </div>
                         </div>
                         <div class="sidebyside">
-                            <label for="data.canAct" class="resource-label">Initiative</label>
+                            <label for="system.canAct" class="resource-label">Initiative</label>
                             <div class="headerresource2">
                                 <a><INPUT type="submit" class="initiative-button" name="" value=""></a>
-                            {{!-- <input name="data.canAct" class="initiative-checkbox" type="checkbox" {{checked data.canAct}}> --}}
-                            {{!-- <input type="checkbox" class="initiative-checkbox" name="data.canAct" {{checked data.canAct}}/> --}}
+                            {{!-- <input name="system.canAct" class="initiative-checkbox" type="checkbox" {{checked system.canAct}}> --}}
+                            {{!-- <input type="checkbox" class="initiative-checkbox" name="system.canAct" {{checked system.canAct}}/> --}}
                         </div>
                         </div>
                     </div>
@@ -75,22 +75,22 @@
             <div id="standtop">
             <div class="stand-app-div">
                 <div class="headerresource">
-                    <label for="data.standname" class="standname-label" style="vertical-align: middle; display: inline-block;">Stand Name:</label>
-                    <input type="text" style="text-align:left; width:150px;" name="data.standname" value="{{data.standname}}" data-dtype="String"/>
+                    <label for="system.stand.standname" class="standname-label" style="vertical-align: middle; display: inline-block;">Stand Name:</label>
+                    <input type="text" style="text-align:left; width:150px;" name="system.stand.standname" value="{{system.stand.standname}}" data-dtype="String"/>
                 </div>
                 <img class="standImgView" id="stand-img-view" src="/systems/jojo-rpg/images/Stand_Img_Placeholder.png" height="156" width="156">
                 
                 <div class="UrlSrcSetter">
-                    <input id="UrlInput" name="data.standImageURL", value="{{data.standImageURL}}" placeholder="URL to Stand Portrait">
+                    <input id="UrlInput" name="system.standImageURL", value="{{system.standImageURL}}" placeholder="URL to Stand Portrait">
                     <button class="grab-url">Set</button>
                 </div>
             </div>
                 <div class="grid-container" id="skillspadding" style="border: 1px solid #726857;">
                     <div class="grid-item-skills">
-                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.power.value}}" data-label="Power"><a>Power</a></span>
+                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.power.value}}" data-label="Power"><a>Power</a></span>
                         <div class="resource-content" flexrow flex-center flex-between>
-                            <select name="data.power.value" data-dtype="String">
-                                {{#select data.power.value}}
+                            <select name="system.stand.power.value" data-dtype="String">
+                                {{#select system.stand.power.value}}
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -102,10 +102,10 @@
                     </div>
 
                     <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.speed.value}}" data-label="Speed"><a>Speed</a></span>
+                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.speed.value}}" data-label="Speed"><a>Speed</a></span>
                         <div class="resource-content" flexrow flex-center flex-between>
-                            <select name="data.speed.value" data-dtype="String">
-                                {{#select data.speed.value}}
+                            <select name="system.speed.value" data-dtype="String">
+                                {{#select system.stand.speed.value}}
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -117,10 +117,10 @@
                     </div>
 
                     <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.durability.value}}" data-label="Durability"><a>Durability</a></span>
+                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.durability.value}}" data-label="Durability"><a>Durability</a></span>
                         <div class="resource-content" flexrow flex-center flex-between>
-                            <select name="data.durability.value" data-dtype="String">
-                                {{#select data.durability.value}}
+                            <select name="system.durability.value" data-dtype="String">
+                                {{#select system.stand.durability.value}}
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -132,10 +132,10 @@
                     </div>
 
                     <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.precision.value}}" data-label="Precision"><a>Precision</a></span>
+                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.precision.value}}" data-label="Precision"><a>Precision</a></span>
                         <div class="resource-content" flexrow flex-center flex-between>
-                            <select name="data.precision.value" data-dtype="String">
-                                {{#select data.precision.value}}
+                            <select name="system.stand.precision.value" data-dtype="String">
+                                {{#select system.stand.precision.value}}
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -147,10 +147,10 @@
                     </div>
 
                     <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.range.value}}" data-label="Range"><a>Range</a></span>
+                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.range.value}}" data-label="Range"><a>Range</a></span>
                         <div class="resource-content" flexrow flex-center flex-between>
-                            <select name="data.range.value" data-dtype="String">
-                                {{#select data.range.value}}
+                            <select name="system.stand.range.value" data-dtype="String">
+                                {{#select system.stand.range.value}}
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -162,10 +162,10 @@
                     </div>
 
                     <div class="grid-item-skills" style="background-color: rgba(255, 255, 255, 0);">
-                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{data.momentum.value}}" data-ranking="{{data.potential.value}}" data-label="Potential"><a>Potential</a></span>
+                        <span class="ability-mod rollable" id="largetext" data-roll="1d20" data-momentum="{{system.momentum.value}}" data-ranking="{{system.stand.potential.value}}" data-label="Potential"><a>Potential</a></span>
                         <div class="resource-content" flexrow flex-center flex-between>
-                            <select name="data.potential.value" data-dtype="String">
-                                {{#select data.potential.value}}
+                            <select name="system.stand.potential.value" data-dtype="String">
+                                {{#select system.stand.potential.value}}
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -179,7 +179,7 @@
             <div class="roll-modifier-div">
                 <h2>Modify Roll</h2>
                 <button class="modifier-button-inc" id="modify-button">+</button>
-                <input readonly type="string" class="modifier-box" id="modifier-box" name="data.rollmodifier.value" value="{{data.rollmodifier.value}}" data-dtype="Number"/>
+                <input readonly type="string" class="modifier-box" id="modifier-box" name="system.rollmodifier.value" value="{{system.rollmodifier.value}}" data-dtype="Number"/>
                 <button class="modifier-button-dec" id="modify-button">-</button>
                 <button class="modifier-button-rst">Reset</button>
             </div>       
@@ -189,19 +189,19 @@
             <div class="grid-container-bio">
                 <div class="bio-grid-item">
                     <h2>Appearance</h2>
-                    <textarea class="textarea-medium" rows="4" name="data.appearancestand">{{data.appearancestand}}</textarea>
+                    <textarea class="textarea-medium" rows="4" name="system.appearancestand">{{system.appearancestand}}</textarea>
                 </div>
                 <div class="bio-grid-item">
                     <h2>Background</h2>
-                    <textarea class="textarea-medium" rows="4" name="data.backgroundstand">{{data.backgroundstand}}</textarea>
+                    <textarea class="textarea-medium" rows="4" name="system.backgroundstand">{{system.backgroundstand}}</textarea>
                 </div>
                 <div class="bio-grid-item">
                     <h2>Abilities</h2>
-                    <textarea class="textarea-medium" rows="5" name="data.abilitiesstand">{{data.abilitiesstand}}</textarea>
+                    <textarea class="textarea-medium" rows="5" name="system.abilitiesstand">{{system.abilitiesstand}}</textarea>
                 </div>
                 <div class="bio-grid-item">
                     <h2>Techniques</h2>
-                    <textarea class="textarea-medium" rows="5" name="data.techniquesstand">{{data.techniquesstand}}</textarea>
+                    <textarea class="textarea-medium" rows="5" name="system.techniquesstand">{{system.techniquesstand}}</textarea>
                 </div>
             </div>
         </div>
@@ -224,19 +224,19 @@
             <div class="grid-container-bio">
                 <div class="bio-grid-item">
                     <h2>Appearance</h2>
-                    <textarea class="textarea-large" style="resize: none;" rows="9" name="data.appearance">{{data.appearance}}</textarea>
+                    <textarea class="textarea-large" style="resize: none;" rows="9" name="system.appearance">{{system.appearance}}</textarea>
                 </div>
                 <div class="bio-grid-item">
                     <h2>Background</h2>
-                    <textarea class="textarea-large" style="resize: none;" rows="9" name="data.biography">{{data.biography}}</textarea>
+                    <textarea class="textarea-large" style="resize: none;" rows="9" name="system.biography">{{system.biography}}</textarea>
                 </div>
                 <div class="bio-grid-item">
                     <h2>Impulses</h2>
-                    <textarea class="textarea-large" style="resize: none;" rows="9" name="data.impulses">{{data.impulses}}</textarea>
+                    <textarea class="textarea-large" style="resize: none;" rows="9" name="system.impulses">{{system.impulses}}</textarea>
                 </div>
                 <div class="bio-grid-item">
                     <h2>Goals</h2>
-                    <textarea class="textarea-large" style="resize: none;" rows="9" name="data.goals">{{data.goals}}</textarea>
+                    <textarea class="textarea-large" style="resize: none;" rows="9" name="system.goals">{{system.goals}}</textarea>
                 </div>
             </div>
         </div>

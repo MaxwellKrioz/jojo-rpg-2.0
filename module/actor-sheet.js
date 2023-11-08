@@ -16,93 +16,144 @@ export class SimpleActorSheet extends ActorSheet {
 	  return mergeObject(super.defaultOptions, {
   	  classes: ["worldbuilding", "sheet", "actor"],
   	  template: "systems/jojo-rpg/templates/actor-stand-user-sheet.html",
-      width: 850,
+      width: 745,
       height: 660,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+      tabs: [
+        {navSelector: ".image-nav", contentSelector: ".image-tabs", initial: "profile"},
+        {navSelector: ".profile-nav", contentSelector: ".profile-tabs", initial: "sumary"}
+      ],
+      //dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.dtypes = ["String", "Number", "Boolean"];
-
-    return data;
+  get template() {
+    return `systems/jojo-rpg/templates/actor-${this.actor.type}-sheet.html`;
   }
 
-  _returnRollFormula(requestedRank)
-  {
-    switch(requestedRank.toLowerCase()) {
-      case "a":
-        return new Roll("3d20kh", this.actor.data.data);
-      case "b":
-        return new Roll("2d20kh", this.actor.data.data);
-      case "c":
-        return new Roll("1d20", this.actor.data.data);
-      case "d":
-        return new Roll("2d20kl", this.actor.data.data);
-      case "e":
-        return new Roll("3d20kl", this.actor.data.data);
+  async getData() {
+    const context = super.getData();
+    console.log("------------------");
+    console.log(game);
+    console.log("------------------");
+    // Use a safe clone of the actor data for further operations.
+    const actorData = context.actor.system;
+    // Add the actor's data to context.data for easier access, as well as flags.
+    context.data = actorData;
+    context.flags = actorData.flags;
+    switch (context.actor.type){
+      case 'character':
+        context.actorTypeLabel = 'Usuario de stand'
+        break;
+      case 'stand':
+        context.actorTypeLabel = 'Stand'
+        break;
       default:
-        return new Roll("1d4", this.actor.data.data);
+        context.actorTypeLabel = '???'
     }
+    if (context.actor.type == 'character') {
+      const stands = await this.getStands(actorData.id);
+      context.standList = stands;
+    }else{      
+      const user = await this.getMyUser(actorData.characterId);
+      const allUsers = await this.getStandUsers();
+      context.standUser = user;
+      context.allUsers = allUsers;
+    }
+    context.isGM = game.user.isGM;
+    console.log("@nova context", context);
+    return context;
   }
 
-  _presetRoll(event){
-    event.preventDefault();
+  _returnRollFormula(requestedRank, modifierArray)
+  {
+    let diceRoll;
+    let modifier = '';
+    switch(requestedRank.toUpperCase()) {
+      case "A":
+        diceRoll = "3d20kh";
+        break;
+      case "B":
+        diceRoll = "2d20kh";
+        break;
+      case "C":
+        diceRoll = "1d20";
+        break;
+      case "D":
+        diceRoll = "2d20kl";
+        break;
+      case "E":
+        diceRoll = "3d20kl";
+        break;
+      default:
+        diceRoll = "1d4";
+    }
+    
+    if(modifierArray){
+      const arraynames = Object.keys(modifierArray);
+      const modifierString = arraynames.map( label => {
+        return '@'+label
+      });
 
+      modifier = ' + '+modifierString.join(' + ');
+    }
+
+    console.log("M1",requestedRank, diceRoll);
+    
+    console.log(`${diceRoll}${modifier}`)
+
+    return new Roll(`${diceRoll}${modifier}`, modifierArray);
+  }
+
+  async _presetRoll(event){
+    event.preventDefault();
     const element = event.currentTarget;
     const btnRank = element.value;
+    const actorRollModifier = this.actor.system.rollmodifier.value;
+    const actorMomentum = Math.min(this.actor.system.rollmodifier.value, 3);
 
-    let roll;
+    const roll = this._returnRollFormula(btnRank, {momentum: actorMomentum, rollModifier: actorRollModifier});
+    await roll.roll();
+    let fResult = Number(roll.total);
+    let adjustedRoll = "";
+    let styleOverride = "";
+    let html = "";
+    let label = "Making a character " + btnRank.toUpperCase() + "-Rank roll.";
 
-    console.log(btnRank);
+    switch(true)
+    {
+      case (fResult <= 0):
+        adjustedRoll = "CRITICAL FAILURE";
+        styleOverride="background-color: #434343; color:#ffffff";
+      break;
 
-    roll = this._returnRollFormula(btnRank);
+      case(fResult <=5):
+        adjustedRoll = "DEFINITE FAILURE";
+        styleOverride="background-color: #674ea7; color:#ffffff";
+      break;
 
-    let rollOutcome = roll.roll();
-      let fResult = Number(rollOutcome.result);
-      let adjustedRoll = "";
-      let styleOverride = "";
-      let html = "";
-      let label = "Making a character " + btnRank.toUpperCase() + "-Rank roll.";
+      case(fResult <=10):
+        adjustedRoll = "MODERATE FAILURE";
+        styleOverride="background-color: #3d85c6; color:#ffffff";
+      break;
 
-      console.log(fResult);
-      switch(true)
-      {
-        case (fResult <= 0):
-          adjustedRoll = "CRITICAL FAILURE";
-          styleOverride="background-color: #434343; color:#ffffff";
-        break;
+      case(fResult <=15):
+        adjustedRoll = "MODERATE SUCCESS";
+        styleOverride="background-color: #ffd966";
+      break;
 
-        case(fResult <=5):
-          adjustedRoll = "DEFINITE FAILURE";
-          styleOverride="background-color: #674ea7; color:#ffffff";
-        break;
+      case(fResult <= 20):
+        adjustedRoll = "DEFINITE SUCCESS";
+        styleOverride="background-color: #ff9900";
+      break;
 
-        case(fResult <=10):
-          adjustedRoll = "MODERATE FAILURE";
-          styleOverride="background-color: #3d85c6; color:#ffffff";
-        break;
-
-        case(fResult <=15):
-          adjustedRoll = "MODERATE SUCCESS";
-          styleOverride="background-color: #ffd966";
-        break;
-
-        case(fResult <= 20):
-          adjustedRoll = "DEFINITE SUCCESS";
-          styleOverride="background-color: #ff9900";
-        break;
-
-        case (fResult >= 21):
-          adjustedRoll = "CRITICAL SUCCESS";
-          styleOverride="background-color: #e06666";
-        break;
-      }
+      case (fResult >= 21):
+        adjustedRoll = "CRITICAL SUCCESS";
+        styleOverride="background-color: #e06666";
+      break;
+    }
 
     html = `<div class="dice-roll">`
     html += `     <div class="dice-result">`
@@ -111,17 +162,35 @@ export class SimpleActorSheet extends ActorSheet {
     html += `          <section class="tooltip-part">`
     html += `               <div class="dice">`
     html += `                    <p class="part-formula">`
-    html += `                         ${rollOutcome.formula}`
+    html += `                         ${roll.result}`
     html += `                         <span class="part-total">${fResult.toString()}</span>`
     html += `                    </p>`
     html += `                    <ol class="dice-rolls">`
-    html += `                         <li class="roll die ${rollOutcome.formula}">${rollOutcome.total}</li>`
+    html += `                         <li class="roll die ${roll.result}">${roll.total}</li>`
     html += `                    </ol>`
     html += `               </div>`
     html += `          </section>`
     html += `     </div>`
     html += `     <h4 class="dice-total">${fResult}</h4>`
     html += `</div>`
+
+    let chatData = {
+      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+      rolls: [roll],
+      content: html,
+      flavor: label
+      //etc.
+   };
+
+    ChatMessage.applyRollMode(chatData, "roll");
+    ChatMessage.create(chatData);
+
+    
+   
+
+/*
+    console.log(fResult);
+    
 
       let chatData = {
       speaker: ChatMessage.getSpeaker({actor: this.actor}),
@@ -132,9 +201,10 @@ export class SimpleActorSheet extends ActorSheet {
       AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
 
       ChatMessage.create(chatData, {});
+      */
   }
 
-  _onRoll(event) {
+  async _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
@@ -149,8 +219,8 @@ export class SimpleActorSheet extends ActorSheet {
       let modifier = document.getElementById(this.actor._id+'-modifier-box').value;
       let momentum = dataset.momentum;
 
-      let rollOutcome = roll.roll();
-      let fResult = Number(rollOutcome.result) + Number(modifier) + Number(momentum);
+      await roll.roll();
+      let fResult = Number(roll.total) + Number(modifier) + Number(momentum);
       let adjustedRoll = "";
       let styleOverride = "";
       let html = "";
@@ -197,11 +267,11 @@ export class SimpleActorSheet extends ActorSheet {
     html += `          <section class="tooltip-part">`
     html += `               <div class="dice">`
     html += `                    <p class="part-formula">`
-    html += `                         ${rollOutcome.formula} + (momentum) + (other)`
+    html += `                         ${roll.result} + (momentum) + (other)`
     html += `                         <span class="part-total">${fResult.toString()}</span>`
     html += `                    </p>`
     html += `                    <ol class="dice-rolls">`
-    html += `                         <li class="roll die ${rollOutcome.formula}">${rollOutcome.total}+${momentum}+${modifier}</li>`
+    html += `                         <li class="roll die ${roll.result}">${roll.total}+${momentum}+${modifier}</li>`
     html += `                    </ol>`
     html += `               </div>`
     html += `          </section>`
@@ -232,7 +302,52 @@ export class SimpleActorSheet extends ActorSheet {
     }
   }
 
-  _setStandImage(event)
+  async getStandUsers() {
+    const allActors = game.actors;
+    
+    if(!allActors) return {}
+    
+    const standusers = allActors.filter(actor =>{
+      return actor.type == 'character';
+    });
+    const mappedUsers = standusers.map(actor=>{
+      return {
+        id: actor.id,
+        name: actor.name
+      }
+    });
+    console.log("stand Users: ", mappedUsers);
+    let baseList = [
+      {
+        id: "",
+        name: "???"
+      }
+    ];
+    
+    return baseList.concat(mappedUsers);
+  }
+
+  async getStands(actorId){
+    const allActors = game.actors;    
+    if(!allActors) return {}
+
+    const stands = allActors.filter(actor =>{
+      return actor.type == 'stand' && actor.system.characterId == this.actor.id;
+    });
+    console.log(this.actor, allActors);
+    console.log("My stands", stands);
+    return stands
+  }
+
+  async getMyUser(actorId){
+    const myActor = game.actors.get(actorId);
+    console.log("My User: ", myActor);
+    return myActor
+  }
+
+  async getToken(){}
+
+  /*_setStandImage(event)
   {
     event.preventDefault();
     const element = event.currentTarget;
@@ -240,7 +355,7 @@ export class SimpleActorSheet extends ActorSheet {
 
     let url = dataset.standImageURL;
     console.log(standImageURL);
-  }
+  }*/
 
   /* -------------------------------------------- */
 
@@ -250,6 +365,14 @@ export class SimpleActorSheet extends ActorSheet {
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+
+    //Update Stand Stats
+    //Update Stand User
+    html.find('#currentStandUser').change(async event => {
+      this.actor.system.characterId = event.target.value;
+      await this.actor.update();
+    });
+
 
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
@@ -320,16 +443,16 @@ export class SimpleActorSheet extends ActorSheet {
       document.getElementById(this.actor._id+'-currentlightwounds').value = value;
     });
 
-    html.find('.'+this.actor.data._id+'-grab-url').click(ev => {
-      var url = this.actor.data.data.standImageURL;
+    html.find('.'+this.actor.system._id+'-grab-url').click(ev => {
+      var url = this.actor.system.data.standImageURL;
       console.log(url);
       //console.log(document.getElementById('stand-img-view'));
       //console.log(this.actor);
 
       if(url)
-        html.find('.'+this.actor.data._id+'-standImgView').src = url;
+        html.find('.'+this.actor.system._id+'-standImgView').src = url;
       else
-        html.find('.'+this.actor.data._id+'-standImgView').src = "/systems/jojo-rpg/images/Stand_Img_Placeholder.png"; 
+        html.find('.'+this.actor.system._id+'-standImgView').src = "/systems/jojo-rpg/images/Stand_Img_Placeholder.png"; 
       /*if(url)
         document.getElementById('stand-img-view').src = url;
       else
@@ -362,7 +485,7 @@ export class SimpleActorSheet extends ActorSheet {
 
       for(let i = 0; i < combatants.length; i++)
       {
-        var combatantData = combatants[i].actor.data;
+        var combatantData = combatants[i].actor.system;
         if(combatantData._id == id)
         {
           _jojoLog("Found ID match!");
@@ -371,7 +494,7 @@ export class SimpleActorSheet extends ActorSheet {
       }
 
       
-      actorCanAct = this.actor.data.data.canAct;
+      actorCanAct = this.actor.system.data.canAct;
 
 
       if(linkedCombatant)
@@ -382,7 +505,7 @@ export class SimpleActorSheet extends ActorSheet {
         {
           this.actor.update({'data.canAct': false});
           //linkedCombatant.actor.update({'data.canAct': false});
-          _announceInitiativeUse(this.actor.data);
+          _announceInitiativeUse(this.actor.system);
         }else{
           _jojoLog("This actor cannot act yet!");
           ChatMessage.create({
@@ -401,14 +524,14 @@ export class SimpleActorSheet extends ActorSheet {
       }
 
 
-      //console.log(this.actor.data.data);
+      //console.log(this.actor.system.data);
       //console.log(game.combat.combatants);
 
       //_jojoLog(canAct);
     });
 
     html.find('.initiative-checkbox').click(ev => {
-      var canAct = this.actor.data.data.canAct;
+      var canAct = this.actor.system.canAct;
       var combatants = game.combat.combatants;
       //console.log(canAct);
       //console.log(this.actor);
@@ -425,7 +548,7 @@ export class SimpleActorSheet extends ActorSheet {
           if(combatants[i] == undefined)
             return;
 
-          if(combatants[i].actor.data._id == this.actor.data._id && combatants[i].token != undefined)
+          if(combatants[i].actor.system._id == this.actor.system._id && combatants[i].token != undefined)
           {
             playerCombatantId = combatants[i]._id;
             //console.log("MATCH!");
@@ -436,7 +559,7 @@ export class SimpleActorSheet extends ActorSheet {
         {
           //console.log("has acted");
           game.combat.setInitiative(playerCombatantId, 0);
-          _announceInitiativeUse(this.actor.data);
+          _announceInitiativeUse(this.actor.system);
         }else if(playerCombatantId !== 'undefined'){
           //console.log("has not acted");
           game.combat.setInitiative(playerCombatantId, 1);
@@ -454,11 +577,11 @@ export class SimpleActorSheet extends ActorSheet {
     html.find('.rollable').click(this._onRoll.bind(this));
 
 
-    if(this.actor.data.data.standImageURL)
+    if(this.actor.system.standImageURL)
     {
-      if(document.getElementById(this.actor.data._id+'-stand-img-view'))
+      if(document.getElementById(this.actor.system._id+'-stand-img-view'))
       {
-        document.getElementById(this.actor.data._id+'-stand-img-view').src = this.actor.data.data.standImageURL;
+        document.getElementById(this.actor.system._id+'-stand-img-view').src = this.actor.system.standImageURL;
         //this.actor.update();
       }
     }

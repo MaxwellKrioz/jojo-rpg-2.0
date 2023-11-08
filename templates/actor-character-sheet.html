@@ -1,0 +1,46 @@
+<form class="{{cssClass}} sheet-jojo" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-jojo-header">
+       <div class="jojo-header-container">
+        {{actorTypeLabel}}
+       </div>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-jojo-body">
+        <div class="sheet-jojo-art-container">
+            <nav class="image-nav tabs" data-group="seccondary">
+                <a class="item" data-tab="profile">Perfil</a>
+                <a class="item" data-tab="token">Token</a>
+            </nav>
+            <div class="image-tabs">
+                <div class="tab profile" data-group="seccondary" data-tab="profile">
+                    <img class="profile-img jojo-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+                </div>
+                <div class="tab token" data-group="seccondary" data-tab="token"></div>
+            </div>            
+        </div>
+        <div class="sheet-jojo-data-container">
+            <nav class="profile-nav tabs" data-group="primary">
+                <a class="item" data-tab="profile">Sumario</a>
+                <a class="item" data-tab="stands">Stand(s)</a>
+                <a class="item" data-tab="inventory">Inventario</a>
+                <a class="item" data-tab="bio">Biografia</a>
+            </nav>
+            <div class="profile-tabs">
+                <div class="tab sumary" data-group="primary" data-tab="profile">
+                    <div class="row">
+                        <h1 class="charname">
+                           <div class="jojo-data-input-group">
+                            <label for="name">Nombre:</label>
+                            <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+                    </div>
+                </div>
+                <div class="tab stands" data-group="primary" data-tab="stands"></div>
+                <div class="tab inventory" data-group="primary" data-tab="inventory"></div>
+                <div class="tab bio" data-group="primary" data-tab="bio"></div>
+            </div>
+        </div>
+    </section>
+</form>

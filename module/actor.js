@@ -20,6 +20,10 @@ export class SimpleActor extends Actor {
     const data = super.getRollData();
     const shorthand = game.settings.get("worldbuilding", "macroShorthand");
 
+    console.log("Constructor")
+    console.log("Shortdata", data, shorthand)
+
+
     // Re-map all attributes onto the base roll data
     if ( !!shorthand ) {
       for ( let [k, v] of Object.entries(data.attributes) ) {

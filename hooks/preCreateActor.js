@@ -1,7 +1,7 @@
-Hooks.on("preCreateActor", (createData) => {
-    console.log("Setup new actor");
+Hooks.on("preCreateActor", async (createData) => {
+    console.log("Setup new actor", createData);
     // Assign attributes that are consistent across all tokens.
-    mergeObject(createData,
+    /*mergeObject(createData,
         {"token.bar1" :{"attribute" : "stamina"},
         "token.bar2" :{"attribute" : "momentum"},
         "token.name" : createData.name,
@@ -14,5 +14,5 @@ Hooks.on("preCreateActor", (createData) => {
     if(createData.type == "character")
     {
         createData.token.actorLink = true;
-    }
+    }*/
 })

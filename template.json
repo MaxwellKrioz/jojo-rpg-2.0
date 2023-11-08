@@ -1,138 +1,107 @@
 {
   "Actor": {
     "types": [
-      "character"
+      "character",
+      "stand"
     ],
-    "templates": {
-      "background": {
-        "biography": "",
-        "appearance": "",
-        "impulses":"",
-        "goals":"",
-        "age":"",
-        "sex":"",
-        "appearancestand": "",
-        "backgroundstand":"",
-        "abilitiesstand":"",
-        "techniquesstand":"",
-        "standname":"",
-        "playerNotes":"",
-        "alliesAndEnemies":"",
-        "playerEquipment":"",
-        "goal1Name":"",
-        "goal1Desc":"",
-        "goal2Name":"",
-        "goal2Desc":"",
-        "impulse1Name":"",
-        "impulse1Desc":"",
-        "impulse2Name":"",
-        "impulse2Desc":"",
-        "condition1Name":"",
-        "condition1Desc":"",
-        "condition2Name":"",
-        "condition2Desc":"",
-        "condition3Name":"",
-        "condition3Desc":"",
-        "condition4Name":"",
-        "condition4Desc":"",
-        "condition5Name":"",
-        "condition5Desc":"",
-        "condition6Name":"",
-        "condition6Desc":"",
-        "injuries1":"",
-        "injuries2":""
-      }
-    },
     "character": {
-      "templates": [
-        "background"
-      ],
-      "rankings": {
-        "A": {
-          "label": "A",
-          "dtype": "String"
-        },
-        "B": {
-          "label": "B",
-          "dtype": "String"
-        },
-        "C": {
-          "label": "C",
-          "dtype": "String"
-        },
-        "D": {
-          "label": "D",
-          "dtype": "String"
-        },
-        "E": {
-          "label": "E",
-          "dtype": "String"
-        }
-      },
-      "impulses": "",
-      "goals": "",
       "canAct" : true,
-      "stamina": {
-        "value": 10,
-        "min": 0,
-        "max": 10
+      "willpower": {
+        "value": 0,
+        "min": 0
       },
       "momentum": {
         "value": 0,
         "min": -3,
         "max": 3
       },
-      "standImageURL": "",
       "attributes": {
-        "wounds-light": {
-          "value": 0
-        },
-        "wounds-heavy": {
-          "value": 0
-        },
-        "wounds-major": {
-          "value": 0
+        "speed": 10,
+        "impulses": [
+          {
+            "name": "",
+            "description": "",
+            "active": false
+          },
+          {
+            "name": "",
+            "description": "",
+            "active": false
+          },
+          {
+            "name": "",
+            "description": "",
+            "active": false
+          }
+        ],
+        "goals": [
+          {
+            "name": "",
+            "description": "",
+            "active": false
+          },
+          {
+            "name": "",
+            "description": "",
+            "active": false
+          },
+          {
+            "name": "",
+            "description": "",
+            "active": false          
+          }
+        ],
+        "trust":[],
+        "wounds": {
+          "value": 0,
+          "min": 0,
+          "max": 20
         },
         "age":{
           "value": 0
         },
-        "sex":{
+        "gender":{
           "value":""
         }
-
       },
       "rollmodifier": {
         "value":0
-      },
-      "power": {
-        "value": "",
-        "label": "Power",
-        "modifier": 0
-      },
-      "speed": {
-        "value": "",
-        "label": "Speed",
-        "modifier": []
-      },
-      "durability": {
-        "value": "",
-        "label": "Durability",
-        "modifier": []
-      },
-      "precision": {
-        "value": "",
-        "label": "Precision",
-        "modifier": []
-      },
-      "range": {
-        "value": "",
-        "label": "Range",
-        "modifier": []
-      },
-      "potential": {
-        "value": "",
-        "label": "Potential",
-        "modifier": []
+      }
+    },
+    "stand":{
+      "characterId": "",
+      "name":"",
+      "stats": {
+        "power": {
+          "value": "B",
+          "label": "Power",
+          "modifier": []
+        },
+        "speed": {
+          "value": "B",
+          "label": "Speed",
+          "modifier": []
+        },
+        "durability": {
+          "value": "B",
+          "label": "Durability",
+          "modifier": []
+        },
+        "precision": {
+          "value": "B",
+          "label": "Precision",
+          "modifier": []
+        },
+        "range": {
+          "value": "B",
+          "label": "Range",
+          "modifier": []
+        },
+        "potential": {
+          "value": "B",
+          "label": "Potential",
+          "modifier": []
+        }
       }
     }
   },
@@ -146,5 +115,28 @@
       "weight": 0,
       "attributes": {}
     }
-  }
+  },
+  "Rankings": {
+    "A": {
+      "label": "A",
+      "dtype": "String"
+    },
+    "B": {
+      "label": "B",
+      "dtype": "String"
+    },
+    "C": {
+      "label": "C",
+      "dtype": "String"
+    },
+    "D": {
+      "label": "D",
+      "dtype": "String"
+    },
+    "E": {
+      "label": "E",
+      "dtype": "String"
+    }
+  },
+  "Fortunes":[]
 }
